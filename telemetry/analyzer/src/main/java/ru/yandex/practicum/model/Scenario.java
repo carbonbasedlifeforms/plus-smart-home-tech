@@ -23,10 +23,4 @@ public class Scenario {
 
     @Column(name = "name", nullable = false)
     String name;
-
-//    @OneToMany(mappedBy = "scenario", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-//    List<Condition> conditions;
-//
-//    @OneToMany(mappedBy = "scenario", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-//    List<Action> actions;
 }

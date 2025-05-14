@@ -23,10 +23,4 @@ public class Sensor {
 
     @Column(name = "hub_id", nullable = false)
     String hubId;
-
-//    @OneToMany(mappedBy = "sensor", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-//    List<Condition> conditions;
-//
-//    @OneToMany(mappedBy = "sensor", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-//    List<Action> actions;
 }

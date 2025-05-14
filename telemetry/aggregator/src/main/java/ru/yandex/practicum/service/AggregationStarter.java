@@ -31,7 +31,7 @@ public class AggregationStarter {
 
     private final KafkaProducer<String, SensorsSnapshotAvro> producer;
     private final KafkaConsumer<String, SensorEventAvro> consumer;
-    private final SnapshotProcessor snapshotProcessor;
+    private final SnapshotHandler snapshotHandler;
 
     public void start() {
         Runtime.getRuntime().addShutdownHook(new Thread(consumer::wakeup));
@@ -42,7 +42,7 @@ public class AggregationStarter {
             while (true) {
                 ConsumerRecords<String, SensorEventAvro> records = consumer.poll(CONSUME_ATTEMPT_TIMEOUT);
                 for (ConsumerRecord<String, SensorEventAvro> record : records) {
-                    snapshotProcessor.updateState(record.value())
+                    snapshotHandler.updateState(record.value())
                             .ifPresent(snapshotAvro -> producer.send(new ProducerRecord<>(outTopic, snapshotAvro)));
                 }
                 consumer.commitSync();

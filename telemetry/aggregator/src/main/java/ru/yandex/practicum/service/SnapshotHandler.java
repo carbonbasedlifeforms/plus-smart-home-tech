@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.Optional;
 
 @Component
-public class SnapshotProcessor {
+public class SnapshotHandler {
     private final Map<String, SensorsSnapshotAvro> snapshotAvroMap = new HashMap<>();
 
     Optional<SensorsSnapshotAvro> updateState(SensorEventAvro event) {

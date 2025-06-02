@@ -21,13 +21,15 @@ import java.util.stream.Collectors;
 @Slf4j
 @Component
 public class HubEventProcessor implements Runnable {
-    private static final Duration CONSUME_ATTEMPT_TIMEOUT = Duration.ofMillis(1000);
     private final Map<String, HubEventHandler> hubHandlers;
 
     private final KafkaConsumer<String, HubEventAvro> consumer;
 
     @Value("${kafka.topics.hub}")
     private String hubTopic;
+
+    @Value("${kafka.consumer.attempt-timeout}")
+    private int attemptTimeoutInMs;
 
     @Autowired
     public HubEventProcessor(Set<HubEventHandler> hubHandlers,
@@ -44,7 +46,7 @@ public class HubEventProcessor implements Runnable {
             Runtime.getRuntime().addShutdownHook(new Thread(consumer::wakeup));
 
             while (true) {
-                ConsumerRecords<String, HubEventAvro> records = consumer.poll(CONSUME_ATTEMPT_TIMEOUT);
+                ConsumerRecords<String, HubEventAvro> records = consumer.poll(Duration.ofMillis(attemptTimeoutInMs));
                 for (ConsumerRecord<String, HubEventAvro> record : records) {
                     String hubEventName = record.value().getPayload().getClass().getSimpleName();
                     if (hubHandlers.containsKey(hubEventName)) {

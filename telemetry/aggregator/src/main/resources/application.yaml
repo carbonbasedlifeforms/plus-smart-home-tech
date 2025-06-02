@@ -8,3 +8,5 @@ kafka:
   topics:
     in: telemetry.sensors.v1
     out: telemetry.snapshots.v1
+  consumer:
+    attempt-timeout: 1000

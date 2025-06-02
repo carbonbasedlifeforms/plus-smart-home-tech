@@ -19,7 +19,7 @@ import ru.yandex.practicum.kafka.telemetry.event.ConditionTypeAvro;
 public class Condition {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
+    @Column(name = "id")
     Long id;
 
     @Column(name = "type")

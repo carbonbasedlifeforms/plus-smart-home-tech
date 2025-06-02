@@ -27,6 +27,7 @@ kafka:
     hub: "telemetry.hubs.v1"
   consumer:
     enable-auto-commit: false
+    attempt-timeout: 1000
 grpc:
   client:
     hub-router:

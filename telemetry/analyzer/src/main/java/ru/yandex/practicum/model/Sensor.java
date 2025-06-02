@@ -4,6 +4,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -21,6 +22,7 @@ public class Sensor {
     @Column(name = "id")
     String id;
 
-    @Column(name = "hub_id", nullable = false)
+    @NotBlank
+    @Column(name = "hub_id")
     String hubId;
 }

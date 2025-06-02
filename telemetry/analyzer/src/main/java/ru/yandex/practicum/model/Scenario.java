@@ -1,6 +1,7 @@
 package ru.yandex.practicum.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -18,9 +19,11 @@ public class Scenario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
-    @Column(name = "hub_id", nullable = false)
+    @NotBlank
+    @Column(name = "hub_id")
     String hubId;
 
+    @NotBlank
     @Column(name = "name", nullable = false)
     String name;
 }

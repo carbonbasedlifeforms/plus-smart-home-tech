@@ -21,13 +21,14 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AggregationStarter {
 
-    private static final Duration CONSUME_ATTEMPT_TIMEOUT = Duration.ofMillis(1000);
-
     @Value("${kafka.topics.out}")
     private String outTopic;
 
     @Value("${kafka.topics.in}")
     private String inTopic;
+
+    @Value("${kafka.consumer.attempt-timeout}")
+    private int attemptTimeoutInMs;
 
     private final KafkaProducer<String, SensorsSnapshotAvro> producer;
     private final KafkaConsumer<String, SensorEventAvro> consumer;
@@ -40,7 +41,7 @@ public class AggregationStarter {
             consumer.subscribe(List.of(inTopic));
 
             while (true) {
-                ConsumerRecords<String, SensorEventAvro> records = consumer.poll(CONSUME_ATTEMPT_TIMEOUT);
+                ConsumerRecords<String, SensorEventAvro> records = consumer.poll(Duration.ofMillis(attemptTimeoutInMs));
                 for (ConsumerRecord<String, SensorEventAvro> record : records) {
                     snapshotHandler.updateState(record.value())
                             .ifPresent(snapshotAvro -> producer.send(new ProducerRecord<>(outTopic, snapshotAvro)));

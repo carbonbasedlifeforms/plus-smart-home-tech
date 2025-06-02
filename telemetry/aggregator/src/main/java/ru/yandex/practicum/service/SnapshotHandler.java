@@ -13,7 +13,7 @@ import java.util.Optional;
 public class SnapshotHandler {
     private final Map<String, SensorsSnapshotAvro> snapshotAvroMap = new HashMap<>();
 
-    Optional<SensorsSnapshotAvro> updateState(SensorEventAvro event) {
+    public Optional<SensorsSnapshotAvro> updateState(SensorEventAvro event) {
         SensorsSnapshotAvro snapshot = snapshotAvroMap.getOrDefault(event.getHubId(), SensorsSnapshotAvro.newBuilder()
                 .setHubId(event.getHubId())
                 .setTimestamp(event.getTimestamp())

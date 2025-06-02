@@ -18,13 +18,14 @@ import java.util.List;
 @Component
 @RequiredArgsConstructor
 public class SnapshotProcessor {
-    private static final Duration CONSUME_ATTEMPT_TIMEOUT = Duration.ofMillis(1000);
-
     private final KafkaConsumer<String, SensorsSnapshotAvro> consumer;
     private final SnapshotHandler snapshotHandler;
 
     @Value("${kafka.topics.snapshot}")
     private String snapshotTopic;
+
+    @Value("${kafka.consumer.attempt-timeout}")
+    private int attemptTimeoutInMs;
 
     public void start() {
         try {
@@ -34,7 +35,8 @@ public class SnapshotProcessor {
             Runtime.getRuntime().addShutdownHook(new Thread(consumer::wakeup));
 
             while (true) {
-                ConsumerRecords<String, SensorsSnapshotAvro> records = consumer.poll(CONSUME_ATTEMPT_TIMEOUT);
+                ConsumerRecords<String, SensorsSnapshotAvro> records = consumer
+                        .poll(Duration.ofMillis(attemptTimeoutInMs));
                 if (records.isEmpty()) {
                     continue;
                 }

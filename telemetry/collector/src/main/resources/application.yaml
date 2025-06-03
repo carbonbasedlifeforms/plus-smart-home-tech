@@ -2,11 +2,11 @@
 spring:
   application:
     name: collector
-grpc:
-  server:
-    port: 59091
-kafka:
-  bootstrap-server: "localhost:9092"
-  topics:
-    sensor: "telemetry.sensors.v1"
-    hub: "telemetry.hubs.v1"
+  config:
+    import: configserver:http://localhost:8888
+  cloud:
+    config:
+      fail-fast: true
+      retry:
+        use-random-policy: true
+        max-interval: 6000

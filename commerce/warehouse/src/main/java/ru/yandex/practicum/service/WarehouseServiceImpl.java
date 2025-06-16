@@ -72,8 +72,6 @@ public class WarehouseServiceImpl implements WarehouseService {
                     warehouseItems.get(productId).getHeight() *
                     quantity;
             if (!isFragile && warehouseItems.get(productId).getFragile()) isFragile = true;
-//            isFragile = isFragile || warehouseItems.get(productId).getFragile();
-
         }
         log.info("Booked products by weight: {}, volume: {}, fragile: {}", weight, volume, isFragile);
         return BookedProductsDto.builder()

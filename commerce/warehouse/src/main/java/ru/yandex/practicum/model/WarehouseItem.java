@@ -4,6 +4,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -12,7 +13,7 @@ import lombok.experimental.FieldDefaults;
 import java.util.UUID;
 
 @Entity
-@Table(name = "warehouse_items")
+@Table(name = "warehouse_items", schema = "warehouse")
 @Getter
 @Setter
 @ToString
@@ -20,23 +21,29 @@ import java.util.UUID;
 public class WarehouseItem {
     @Id
     @Column(name = "id")
+    @NotNull
     UUID id;
 
     @Column(name = "quantity")
+    @NotNull
     Long quantity;
 
     @Column(name = "fragile")
     Boolean fragile;
 
     @Column(name = "weight")
+    @NotNull
     Double weight;
 
     @Column(name = "width")
+    @NotNull
     Double width;
 
     @Column(name = "height")
+    @NotNull
     Double height;
 
     @Column(name = "depth")
+    @NotNull
     Double depth;
 }

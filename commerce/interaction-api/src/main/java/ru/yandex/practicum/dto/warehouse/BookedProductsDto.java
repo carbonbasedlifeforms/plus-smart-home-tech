@@ -13,11 +13,11 @@ import lombok.ToString;
 @Builder
 public class BookedProductsDto {
     @Positive
-    double deliveryWeight;
+    private double deliveryWeight;
 
     @Positive
-    double deliveryVolume;
+    private double deliveryVolume;
 
     @NotNull
-    boolean fragile;
+    private boolean fragile;
 }

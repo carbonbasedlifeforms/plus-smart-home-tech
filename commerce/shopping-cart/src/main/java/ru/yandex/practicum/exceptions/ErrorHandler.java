@@ -12,28 +12,28 @@ public class ErrorHandler {
     @ExceptionHandler
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
     public ErrorResponse handleNotAuthorizedUser(NotAuthorizedUserException e) {
-        log.info("Not authorized user: {}", e.getMessage());
+        log.error("Not authorized user: {}", e.getMessage());
         return new ErrorResponse(e.getMessage());
     }
 
     @ExceptionHandler
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErrorResponse handleNoProductsInShoppingCart(NoProductsInShoppingCartException e) {
-        log.info("No products in shopping cart: {}", e.getMessage());
+        log.error("No products in shopping cart: {}", e.getMessage());
         return new ErrorResponse(e.getMessage());
     }
 
     @ExceptionHandler
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public ErrorResponse handleNotFoundShoppingCart(NotFoundShoppingCartException e) {
-        log.info("Not found shopping cart: {}", e.getMessage());
+        log.error("Not found shopping cart: {}", e.getMessage());
         return new ErrorResponse(e.getMessage());
     }
 
     @ExceptionHandler
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ErrorResponse handleError(Exception e) {
-        log.info("System error: {}", e.getMessage());
+        log.error("System error: {}", e.getMessage());
         return new ErrorResponse(e.getMessage());
     }
 }

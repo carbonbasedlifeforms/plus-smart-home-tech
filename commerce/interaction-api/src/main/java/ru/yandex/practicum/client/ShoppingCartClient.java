@@ -15,20 +15,17 @@ public interface ShoppingCartClient {
     ShoppingCartDto getShoppingCart(@RequestParam(name = "username") String userName);
 
     @PutMapping
-    ShoppingCartDto addProductToShoppingCart(
-            @RequestParam(name = "username") String userName,
-            @RequestBody Map<UUID, Long> products);
+    ShoppingCartDto addProductToShoppingCart(@RequestParam(name = "username") String userName,
+                                             @RequestBody Map<UUID, Long> products);
 
     @DeleteMapping
     void deactivateShoppingCart(@RequestParam(name = "username") String userName);
 
     @PostMapping("/remove")
-    ShoppingCartDto removeProductsFromShoppingCart(
-            @RequestParam(name = "username") String userName,
-            @RequestBody List<UUID> productList);
+    ShoppingCartDto removeProductsFromShoppingCart(@RequestParam(name = "username") String userName,
+                                                   @RequestBody List<UUID> productList);
 
     @PostMapping("/change-quantity")
-    ShoppingCartDto changeProductQuantity(
-            @RequestParam(name = "username") String userName,
-            @RequestBody ChangeProductQuantityRequest request);
+    ShoppingCartDto changeProductQuantity(@RequestParam(name = "username") String userName,
+                                          @RequestBody ChangeProductQuantityRequest request);
 }

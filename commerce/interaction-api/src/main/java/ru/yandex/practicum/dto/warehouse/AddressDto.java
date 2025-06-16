@@ -10,13 +10,13 @@ import lombok.ToString;
 @Builder
 @ToString
 public class AddressDto {
-    String country;
+    private String country;
 
-    String city;
+    private String city;
 
-    String street;
+    private String street;
 
-    String house;
+    private String house;
 
-    String flat;
+    private String flat;
 }

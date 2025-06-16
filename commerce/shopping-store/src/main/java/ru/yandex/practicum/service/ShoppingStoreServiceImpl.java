@@ -45,7 +45,7 @@ public class ShoppingStoreServiceImpl implements ShoppingStoreService{
         checkAndGetProduct(productDto.getProductId());
         Product product = shoppingStoreMapper.toEntity(productDto);
         log.info("Product: {} by ProductDto: {} updated", product, productDto);
-        return shoppingStoreMapper.toDto(shoppingStoreRepository.save(product));
+        return shoppingStoreMapper.toDto(product);
     }
 
     @Transactional

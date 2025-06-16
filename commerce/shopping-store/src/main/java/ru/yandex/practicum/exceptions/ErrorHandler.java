@@ -12,7 +12,7 @@ public class ErrorHandler {
     @ExceptionHandler
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public ErrorResponse productNotFound(ProductNotFoundException e) {
-        log.info("Product not found: {}", e.getMessage());
+        log.error("Product not found: {}", e.getMessage());
         return new ErrorResponse(e.getMessage());
     }
 

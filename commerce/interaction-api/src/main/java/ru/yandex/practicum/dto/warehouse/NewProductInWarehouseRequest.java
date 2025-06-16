@@ -13,11 +13,11 @@ public class NewProductInWarehouseRequest {
     @NotNull
     private UUID productId;
 
-    boolean fragile;
+    private boolean fragile;
 
     @NotNull
-    DimensionDto dimension;
+    private DimensionDto dimension;
 
     @Positive
-    double weight;
+    private double weight;
 }

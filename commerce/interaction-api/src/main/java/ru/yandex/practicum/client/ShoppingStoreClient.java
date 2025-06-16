@@ -12,12 +12,10 @@ import java.util.UUID;
 @FeignClient(name = "shopping-store", path = "/api/v1/shopping-store")
 public interface ShoppingStoreClient {
     @GetMapping
-    Page<ProductDto> getShoppingStoreProducts(
-            @RequestParam String category,
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "1") int size,
-            @RequestParam(defaultValue = "", required = false) List<String> sort
-            );
+    Page<ProductDto> getShoppingStoreProducts(@RequestParam String category,
+                                              @RequestParam(defaultValue = "0") int page,
+                                              @RequestParam(defaultValue = "1") int size,
+                                              @RequestParam(defaultValue = "") List<String> sort);
 
     @PutMapping
     ProductDto createProduct(@RequestBody ProductDto productDto);

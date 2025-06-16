@@ -12,21 +12,21 @@ public class ErrorHandler {
     @ExceptionHandler
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErrorResponse productNotFound(ProductInShoppingCartLowQuantityInWarehouseException e) {
-        log.info("Low quantity: {}", e.getMessage());
+        log.error("Low quantity: {}", e.getMessage());
         return new ErrorResponse(e.getMessage());
     }
 
     @ExceptionHandler
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErrorResponse handleSpecifiedProductAlreadyInWarehouse(SpecifiedProductAlreadyInWarehouseException e) {
-        log.info("Product already in warehouse: {}", e.getMessage());
+        log.error("Product already in warehouse: {}", e.getMessage());
         return new ErrorResponse(e.getMessage());
     }
 
     @ExceptionHandler
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public ErrorResponse handleNoSpecifiedProductInWarehouse(NoSpecifiedProductInWarehouseException e) {
-        log.info("No specified product in warehouse: {}", e.getMessage());
+        log.error("No specified product in warehouse: {}", e.getMessage());
         return new ErrorResponse(e.getMessage());
     }
 

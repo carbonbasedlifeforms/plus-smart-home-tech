@@ -1,6 +1,7 @@
 package ru.yandex.practicum.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -19,11 +20,10 @@ public class ShoppingCart {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id")
-    @NotNull
     UUID id;
 
     @Column(name = "user_name")
-    @NotNull
+    @NotBlank
     String userName;
 
     @Column(name = "is_active")

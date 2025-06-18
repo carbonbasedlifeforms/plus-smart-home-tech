@@ -21,7 +21,6 @@ import java.util.UUID;
 public class WarehouseItem {
     @Id
     @Column(name = "id")
-    @NotNull
     UUID id;
 
     @Column(name = "quantity")

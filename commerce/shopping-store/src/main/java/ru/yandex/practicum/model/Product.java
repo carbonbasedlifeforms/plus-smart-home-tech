@@ -1,6 +1,7 @@
 package ru.yandex.practicum.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,14 +21,13 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id")
-    @NotNull
     UUID id;
 
     @Column(name = "product_name")
-    @NotNull
+    @NotBlank
     String productName;
 
-    @NotNull
+    @NotBlank
     @Column(name = "description")
     String description;
 

@@ -2,6 +2,7 @@ package ru.yandex.practicum.client;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
+import ru.yandex.practicum.circuit_breaker.ShoppingCartClientFallback;
 import ru.yandex.practicum.dto.shoppingcart.ChangeProductQuantityRequest;
 import ru.yandex.practicum.dto.shoppingcart.ShoppingCartDto;
 
@@ -9,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-@FeignClient(name = "shopping-cart", path = "/api/v1/shopping-cart")
+@FeignClient(name = "shopping-cart", path = "/api/v1/shopping-cart", fallback = ShoppingCartClientFallback.class)
 public interface ShoppingCartClient {
     @GetMapping
     ShoppingCartDto getShoppingCart(@RequestParam(name = "username") String userName);

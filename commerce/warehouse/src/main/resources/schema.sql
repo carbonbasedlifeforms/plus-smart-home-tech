@@ -10,3 +10,14 @@ create table if not exists warehouse_items (
     height decimal not null,
     depth decimal not null
 );
+
+create table if not exists order_booking (
+    order_id uuid primary key,
+    delivery_id uuid
+);
+
+create table if not exists order_booking_products (
+    order_booking_id uuid references order_booking(order_id),
+    product_id uuid not null,
+    quantity bigint not null default 0
+);

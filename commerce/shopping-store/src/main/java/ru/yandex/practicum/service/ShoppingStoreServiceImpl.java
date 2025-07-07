@@ -3,6 +3,7 @@ package ru.yandex.practicum.service;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -25,6 +26,7 @@ public class ShoppingStoreServiceImpl implements ShoppingStoreService{
     private final ShoppingStoreMapper shoppingStoreMapper;
 
     @Override
+    @Cacheable(cacheNames = "products")
     public Page<ProductDto> getProducts(ProductCategory category, Pageable pageable) {
         log.info("Getting products by category {} and pageable {}", category, pageable);
         return shoppingStoreRepository.findAllByProductCategory(category, pageable)

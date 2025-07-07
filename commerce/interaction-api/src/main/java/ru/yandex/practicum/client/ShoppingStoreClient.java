@@ -3,13 +3,14 @@ package ru.yandex.practicum.client;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
+import ru.yandex.practicum.circuit_breaker.ShoppingStoreClientFallback;
 import ru.yandex.practicum.dto.shoppingstore.ProductDto;
 import ru.yandex.practicum.enums.QuantityState;
 
 import java.util.List;
 import java.util.UUID;
 
-@FeignClient(name = "shopping-store", path = "/api/v1/shopping-store")
+@FeignClient(name = "shopping-store", path = "/api/v1/shopping-store", fallback = ShoppingStoreClientFallback.class)
 public interface ShoppingStoreClient {
     @GetMapping
     Page<ProductDto> getShoppingStoreProducts(@RequestParam String category,

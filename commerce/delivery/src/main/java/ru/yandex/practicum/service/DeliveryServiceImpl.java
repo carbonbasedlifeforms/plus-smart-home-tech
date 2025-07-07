@@ -20,13 +20,13 @@ import java.util.UUID;
 @Slf4j
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class DeliveryServiceImpl implements DeliveryService {
     private final DeliveryRepository deliveryRepository;
     private final DeliveryMapper deliveryMapper;
     private final OrderClient orderClient;
     private final WarehouseClient warehouseClient;
 
-    @Transactional
     @Override
     public DeliveryDto planDelivery(DeliveryDto deliveryDto) {
         Delivery delivery = deliveryMapper.toEntity(deliveryDto);
@@ -35,7 +35,6 @@ public class DeliveryServiceImpl implements DeliveryService {
         return deliveryMapper.toDto(deliveryRepository.save(delivery));
     }
 
-    @Transactional
     @Override
     public void deliverySuccessful(UUID deliveryId) {
         Delivery delivery = checkAndGetDelivery(deliveryId);
@@ -44,7 +43,6 @@ public class DeliveryServiceImpl implements DeliveryService {
         orderClient.delivery(delivery.getOrderId());
     }
 
-    @Transactional
     @Override
     public void deliveryPicked(UUID deliveryId) {
         Delivery delivery = checkAndGetDelivery(deliveryId);
@@ -53,7 +51,6 @@ public class DeliveryServiceImpl implements DeliveryService {
         orderClient.assembly(delivery.getOrderId());
     }
 
-    @Transactional
     @Override
     public void deliveryFailed(UUID deliveryId) {
         Delivery delivery = checkAndGetDelivery(deliveryId);
@@ -62,7 +59,6 @@ public class DeliveryServiceImpl implements DeliveryService {
         orderClient.deliveryFailed(delivery.getOrderId());
     }
 
-    @Transactional
     @Override
     public Double deliveryCost(OrderDto orderDto) {
         double deliveryCost = 5.0;

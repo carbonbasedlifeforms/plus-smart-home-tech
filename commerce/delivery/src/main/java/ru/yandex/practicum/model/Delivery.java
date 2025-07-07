@@ -5,7 +5,6 @@ import jakarta.validation.constraints.NotNull;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 import ru.yandex.practicum.enums.DeliveryState;
 
@@ -15,7 +14,6 @@ import java.util.UUID;
 @Table(name = "order_delivery")
 @Getter
 @Setter
-@ToString
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Delivery {
     @Id
@@ -48,4 +46,18 @@ public class Delivery {
     @Enumerated(EnumType.STRING)
     @NotNull
     DeliveryState deliveryState;
+
+    @Override
+    public String toString() {
+        return "Delivery{" +
+                "id=" + id +
+                ", totalVolume=" + totalVolume +
+                ", totalWeight=" + totalWeight +
+                ", isFragile=" + isFragile +
+                ", fromAddress=" + fromAddress +
+                ", toAddress=" + toAddress +
+                ", orderId=" + orderId +
+                ", deliveryState=" + deliveryState +
+                '}';
+    }
 }

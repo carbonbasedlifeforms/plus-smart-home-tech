@@ -27,7 +27,7 @@ public class OrderController {
     }
 
     @PutMapping
-    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(HttpStatus.CREATED)
     public OrderDto createNewOrder(@RequestBody CreateNewOrderRequest request, @RequestParam String userName) {
         log.info("Create new order for user {}", userName);
         return orderService.createNewOrder(request, userName);

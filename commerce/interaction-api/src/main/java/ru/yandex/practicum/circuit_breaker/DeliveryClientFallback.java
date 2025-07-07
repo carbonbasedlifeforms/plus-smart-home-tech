@@ -8,30 +8,33 @@ import ru.yandex.practicum.exceptions.ServiceFallBackException;
 
 import java.util.UUID;
 
+import static ru.yandex.practicum.enums.FallBackUtil.FALLBACK_MESSAGE;
+
 @Component
 public class DeliveryClientFallback implements DeliveryClient {
+
     @Override
     public DeliveryDto planDelivery(DeliveryDto deliveryDto) {
-        throw new ServiceFallBackException("service is temporarily unavailable");
+        throw new ServiceFallBackException(FALLBACK_MESSAGE.toString());
     }
 
     @Override
     public void deliverySuccessful(UUID deliveryId) {
-        throw new ServiceFallBackException("service is temporarily unavailable");
+        throw new ServiceFallBackException(FALLBACK_MESSAGE.toString());
     }
 
     @Override
     public void deliveryPicked(UUID deliveryId) {
-        throw new ServiceFallBackException("service is temporarily unavailable");
+        throw new ServiceFallBackException(FALLBACK_MESSAGE.toString());
     }
 
     @Override
     public void deliveryFailed(UUID deliveryId) {
-        throw new ServiceFallBackException("service is temporarily unavailable");
+        throw new ServiceFallBackException(FALLBACK_MESSAGE.toString());
     }
 
     @Override
     public Double deliveryCost(OrderDto orderDto) {
-        throw new ServiceFallBackException("service is temporarily unavailable");
+        throw new ServiceFallBackException(FALLBACK_MESSAGE.toString());
     }
 }

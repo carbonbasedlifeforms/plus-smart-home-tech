@@ -29,6 +29,7 @@ import java.util.UUID;
 @Slf4j
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class OrderServiceImpl implements OrderService {
     private final OrderRepository orderRepository;
     private final OrderMapper orderMapper;
@@ -45,7 +46,6 @@ public class OrderServiceImpl implements OrderService {
                 .map(orderMapper::toDto).toList();
     }
 
-    @Transactional
     @Override
     public OrderDto createNewOrder(CreateNewOrderRequest request, String userName) {
         checkUser(userName);
@@ -57,7 +57,6 @@ public class OrderServiceImpl implements OrderService {
         return orderMapper.toDto(order);
     }
 
-    @Transactional
     @Override
     public OrderDto productReturn(ProductReturnRequest request) {
         Order order = checkAndReturnOrder(request.getOrderId());
@@ -67,7 +66,6 @@ public class OrderServiceImpl implements OrderService {
         return orderMapper.toDto(order);
     }
 
-    @Transactional
     @Override
     public OrderDto payment(UUID orderId) {
         Order order = checkAndReturnOrder(orderId);
@@ -77,7 +75,6 @@ public class OrderServiceImpl implements OrderService {
         return orderMapper.toDto(order);
     }
 
-    @Transactional
     @Override
     public OrderDto paymentFailed(UUID orderId) {
         Order order = checkAndReturnOrder(orderId);
@@ -89,7 +86,6 @@ public class OrderServiceImpl implements OrderService {
         return orderMapper.toDto(order);
     }
 
-    @Transactional
     @Override
     public OrderDto delivery(UUID orderId) {
         Order order = checkAndReturnOrder(orderId);
@@ -107,7 +103,6 @@ public class OrderServiceImpl implements OrderService {
         return orderMapper.toDto(order);
     }
 
-    @Transactional
     @Override
     public OrderDto deliveryFailed(UUID orderId) {
         Order order = checkAndReturnOrder(orderId);
@@ -116,7 +111,6 @@ public class OrderServiceImpl implements OrderService {
         return orderMapper.toDto(order);
     }
 
-    @Transactional
     @Override
     public OrderDto complete(UUID orderId) {
         Order order = checkAndReturnOrder(orderId);
@@ -125,7 +119,6 @@ public class OrderServiceImpl implements OrderService {
         return orderMapper.toDto(order);
     }
 
-    @Transactional
     @Override
     public OrderDto calculateTotalCost(UUID orderId) {
         Order order = checkAndReturnOrder(orderId);
@@ -135,7 +128,6 @@ public class OrderServiceImpl implements OrderService {
         return orderMapper.toDto(order);
     }
 
-    @Transactional
     @Override
     public OrderDto calculateDeliveryCost(UUID orderId) {
         Order order = checkAndReturnOrder(orderId);
@@ -145,7 +137,6 @@ public class OrderServiceImpl implements OrderService {
         return orderMapper.toDto(order);
     }
 
-    @Transactional
     @Override
     public OrderDto assembly(UUID orderId) {
         Order order = checkAndReturnOrder(orderId);
@@ -159,7 +150,6 @@ public class OrderServiceImpl implements OrderService {
         return orderMapper.toDto(order);
     }
 
-    @Transactional
     @Override
     public OrderDto assemblyFailed(UUID orderId) {
         Order order = checkAndReturnOrder(orderId);

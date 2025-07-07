@@ -5,7 +5,6 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 
 import java.util.UUID;
@@ -14,7 +13,6 @@ import java.util.UUID;
 @Table(name = "address")
 @Getter
 @Setter
-@ToString
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Address {
     @Id
@@ -37,4 +35,16 @@ public class Address {
 
     @Column(name = "flat")
     String flat;
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "id=" + id +
+                ", country='" + country + '\'' +
+                ", city='" + city + '\'' +
+                ", street='" + street + '\'' +
+                ", house='" + house + '\'' +
+                ", flat='" + flat + '\'' +
+                '}';
+    }
 }

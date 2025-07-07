@@ -10,30 +10,32 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import static ru.yandex.practicum.enums.FallBackUtil.FALLBACK_MESSAGE;
+
 @Component
 public class ShoppingCartClientFallback implements ShoppingCartClient {
     @Override
     public ShoppingCartDto getShoppingCart(String userName) {
-        throw new ServiceFallBackException("service is temporarily unavailable");
+        throw new ServiceFallBackException(FALLBACK_MESSAGE.getMessage());
     }
 
     @Override
     public ShoppingCartDto addProductToShoppingCart(String userName, Map<UUID, Long> products) {
-        throw new ServiceFallBackException("service is temporarily unavailable");
+        throw new ServiceFallBackException(FALLBACK_MESSAGE.getMessage());
     }
 
     @Override
     public void deactivateShoppingCart(String userName) {
-        throw new ServiceFallBackException("service is temporarily unavailable");
+        throw new ServiceFallBackException(FALLBACK_MESSAGE.getMessage());
     }
 
     @Override
     public ShoppingCartDto removeProductsFromShoppingCart(String userName, List<UUID> productList) {
-        throw new ServiceFallBackException("service is temporarily unavailable");
+        throw new ServiceFallBackException(FALLBACK_MESSAGE.getMessage());
     }
 
     @Override
     public ShoppingCartDto changeProductQuantity(String userName, ChangeProductQuantityRequest request) {
-        throw new ServiceFallBackException("service is temporarily unavailable");
+        throw new ServiceFallBackException(FALLBACK_MESSAGE.getMessage());
     }
 }
